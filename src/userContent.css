@@ -1,21 +1,73 @@
+/*
+ * Nord-Zen-UI content pages
+ * Targets Firefox/Zen about:* pages while leaving normal websites untouched.
+ */
+
 @media (prefers-color-scheme: dark) {
+  /* Shared variables used by current Firefox/Zen internal pages. */
   @-moz-document url-prefix("about:") {
-    :root {
-      --in-content-page-color: #d8dee9 !important;
-      --color-accent-primary: #81a1c1 !important;
-      --color-accent-primary-hover: #88c0d0 !important;
-      --color-accent-primary-active: #5e81ac !important;
-      background-color: #3b4252 !important;
-      --in-content-page-background: #3b4252 !important;
+    :root,
+    :host {
+      --nord0: #2e3440;
+      --nord1: #3b4252;
+      --nord2: #434c5e;
+      --nord3: #4c566a;
+      --nord4: #d8dee9;
+      --nord8: #88c0d0;
+      --nord9: #81a1c1;
+      --nord10: #5e81ac;
+      --nord11: #bf616a;
+      --nord12: #d08770;
+      --nord13: #ebcb8b;
+      --nord14: #a3be8c;
+      --nord15: #b48ead;
+
+      color-scheme: dark !important;
+      --in-content-page-color: var(--nord4) !important;
+      --in-content-text-color: var(--nord4) !important;
+      --color-accent-primary: var(--nord9) !important;
+      --color-accent-primary-hover: var(--nord8) !important;
+      --color-accent-primary-active: var(--nord10) !important;
+      --link-color: var(--nord9) !important;
+      --link-color-hover: var(--nord8) !important;
+
+      --in-content-page-background: var(--nord1) !important;
+      --background-color-canvas: var(--nord0) !important;
+      --background-color-box: var(--nord2) !important;
+      --background-color-box-info: var(--nord0) !important;
+      --input-text-background-color: var(--nord2) !important;
+      --promo-background-color: var(--nord2) !important;
+      --table-row-background-color: var(--nord0) !important;
+      --table-row-background-color-alternate: var(--nord1) !important;
+
+      --in-content-box-background: var(--nord2) !important;
+      --in-content-box-background-hover: var(--nord3) !important;
+      --in-content-button-background: var(--nord2) !important;
+      --in-content-button-background-hover: var(--nord3) !important;
+      --in-content-button-text-color: var(--nord4) !important;
+      --in-content-primary-button-background: var(--nord9) !important;
+      --in-content-primary-button-background-hover: var(--nord8) !important;
+      --in-content-primary-button-text-color: var(--nord0) !important;
+
+      --zen-colors-primary: var(--nord2) !important;
+      --zen-colors-tertiary: var(--nord0) !important;
+      --zen-primary-color: var(--nord9) !important;
+    }
+
+    body,
+    html {
+      background-color: var(--nord1) !important;
+      color: var(--nord4) !important;
     }
   }
 
-  /* Styling the about:newtab and about:home */
+  /* New tab and home. */
   @-moz-document url("about:newtab"), url("about:home") {
-    :root {
-      --newtab-background-color: #3b4252 !important;
+    :root,
+    :host {
+      --newtab-background-color: #2e3440 !important;
       --newtab-background-color-secondary: #434c5e !important;
-      --newtab-element-hover-color: #434c5e !important;
+      --newtab-element-hover-color: #4c566a !important;
       --newtab-text-primary-color: #d8dee9 !important;
       --newtab-wordmark-color: #d8dee9 !important;
       --newtab-primary-action-background: #81a1c1 !important;
@@ -54,73 +106,88 @@
     }
   }
 
-  @-moz-document url-prefix("about:preferences") {
-    :root {
-      --zen-colors-tertiary: #2e3440 !important;
-      --in-content-text-color: #d8dee9 !important;
-      --link-color: #81a1c1 !important;
-      --link-color-hover: #88c0d0 !important;
-      --zen-colors-primary: #434c5e !important;
-      --in-content-box-background: #434c5e !important;
-      --zen-primary-color: #81a1c1 !important;
-    }
-    
-    #input {
-       background-color: #2E3440 !important;
-       border-radius: 50px !important;
-    }
-    
-    #input {
-      transition: background-color 0.2s ease-in-out;
+  /* about:config uses a separate toolbar root. */
+  @-moz-document url-prefix("about:config") {
+    #toolbar {
+      background-color: #2e3440 !important;
+      color: #d8dee9 !important;
     }
 
-    
-    #input:hover {
-     background-color: #3B4252 !important; 
+    #searchbox,
+    #prefs {
+      background-color: #3b4252 !important;
     }
-    
-    #translations-manage-install-list,
-    #downloadFolder,
-    #handlersViewHeader,
-    #handlersView{
-      color: white !important;
-      background-color: #2E3440 !important;
+  }
+
+  /* Zen settings / about:preferences. */
+  @-moz-document url-prefix("about:preferences") {
+    :root,
+    :host {
+      --zen-colors-tertiary: #2e3440 !important;
+      --zen-colors-primary: #434c5e !important;
+      --zen-primary-color: #81a1c1 !important;
+      --in-content-box-background: #434c5e !important;
+      --input-text-background-color: #434c5e !important;
     }
-    
-    menuitem {
-      border-radius: 0 !important;
-      background-color: #434C5E !important;
-      color: inherit !important;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    
-    menuitem[_moz-menuactive="true"] {
-      color: #ffffff !important;
-      background-color: #4C566A !important;
-    }
-    
-    menuitem[selected="true"] {
-      color: #D8DEE9 !important;
-    }
-    
+
+    .container,
     groupbox,
     moz-card {
       background: #3b4252 !important;
     }
 
-    button,
+    #input,
+    input,
+    textarea,
     groupbox menulist {
-      background: #434c5e !important;
+      background-color: #434c5e !important;
+      color: #d8dee9 !important;
+      border-color: #4c566a !important;
+    }
+
+    #input:hover,
+    input:hover,
+    textarea:hover,
+    groupbox menulist:hover {
+      background-color: #4c566a !important;
+    }
+
+    button {
+      background-color: #434c5e !important;
       color: #d8dee9 !important;
     }
-    
+
+    button:hover {
+      background-color: #4c566a !important;
+    }
+
+    menuitem {
+      background-color: #434c5e !important;
+      color: #d8dee9 !important;
+    }
+
+    menuitem[_moz-menuactive="true"] {
+      background-color: #4c566a !important;
+      color: #eceff4 !important;
+    }
+
     .main-content {
       background-color: #2e3440 !important;
     }
+
+    #translations-manage-install-list,
+    #downloadFolder,
+    #handlersViewHeader,
+    #handlersView {
+      background-color: #2e3440 !important;
+      color: #d8dee9 !important;
+    }
   }
 
+  /* about:protections. */
   @-moz-document url-prefix("about:protections") {
-    :root {
+    :root,
+    :host {
       --zen-primary-color: #3b4252 !important;
       --social-color: #b48ead !important;
       --coockie-color: #88c0d0 !important;
@@ -138,10 +205,13 @@
     }
   }
 
+  /* about:addons. */
   @-moz-document url-prefix("about:addons") {
-    :root {
+    :root,
+    :host {
       --zen-dark-color-mix-base: #2e3440 !important;
       --background-color-box: #3b4252 !important;
+      --in-content-box-background: #434c5e !important;
     }
   }
 }
